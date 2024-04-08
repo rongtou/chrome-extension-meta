@@ -137,14 +137,20 @@ fullSearch('tiktok', 10);
   "number": 11,
   "data": [
     {
-      "id": "cdphkkecaejjijafinepmkefiegpkdjf",
-      "iconURL": "https://lh3.googleusercontent.com/gM35fKqoEeCuNXTXDOin74oxaxSKbAb-y3klmr8MbO6UTq3I-OZI8NdMY5X7iD0YUpopE_TaI8GvZJoDHoe3KePS", 
-      "title": "TikTok™ for Desktop",
-      "rating": "3.0943396226415096",
-      "reviewCount": "53",
-      "coverURL": "https://lh3.googleusercontent.com/AwjI84r9DGHzqiITgMQw4eygbx-8cGjT5hMvD37sYZiLOoTTRQWw8kh5vNP7AqjO2jhjIYF_BrlaLp8Js79NUhDZ", 
-      "description": "Experience TikTok™ for desktop like never before: a Chrome extension that brings exciting and creative content to your screen"
-    },
+    id: 'ofpnmcalabcbjgholdjcjblkibolbppb',
+    iconURL: 'https://lh3.googleusercontent.com/rLhEeo6TgST5H4WmCNWKO4fDJDvZVGfoXJNt035pGtnamBRJenmcXhqiI3RvZbRM71LWlQkTL6B825XzbAwAx52c9Q',
+    title: 'Monica - Your AI Copilot powered by ChatGPT4',
+    rating: '4.901862789641072',
+    reviewCount: '15407',
+    coverURL: 'https://lh3.googleusercontent.com/qlN70mLwKZnfWS8U51LGosEj1fOaF3gt_q5PDfN2HalyTpO2Dxh997y4CoZWE1N7oW3ISP9Y0ZxyUlrrTxJmHLaFbQ',
+    description: 'Your AI Copilot powered by GPT-4. Answers complex questions. Writes emails reads articles searches smartly. Usable everywhere.',
+    publish: 'monica.im',
+    ifEstablish: 'true',
+    ifFeatured: 'true',
+    category: 'productivity/tools',
+    categoryNo: '5',
+    userCount: '2000000'
+  },
     // 其他结果...
   ]
 }

@@ -146,35 +146,54 @@ fullSearch('tiktok', 10);
   error: null,
   number: 11,
   data: [
-    {
-      id: 'cdphkkecaejjijafinepmkefiegpkdjf',
-      iconURL: 'https://lh3.googleusercontent.com/gM35fKqoEeCuNXTXDOin74oxaxSKbAb-y3klmr8MbO6UTq3I-OZI8NdMY5X7iD0YUpopE_TaI8GvZJoDHoe3KePS',
-      title: 'TikTok™ for Desktop',
-      rating: '3.0943396226415096',
-      reviewCount: '53',
-      coverURL: 'https://lh3.googleusercontent.com/AwjI84r9DGHzqiITgMQw4eygbx-8cGjT5hMvD37sYZiLOoTTRQWw8kh5vNP7AqjO2jhjIYF_BrlaLp8Js79NUhDZ',
-      description: 'Experience TikTok™ for desktop like never before: a Chrome extension that brings exciting and creative content to your screen'
-    },
-    {
-      id: 'dcpmkllpnpfpojkjildgeoedikjbhodm',
-      iconURL: 'https://lh3.googleusercontent.com/S8NBQ-6bUFZuYCG0jnvTpnAIiFZSTJBaPEB0tXZDQfcwiXVIU6TVVewfz9AmaZ2cUtALKQHPFSyJ0zgmEoZl6CU9ug',
-      title: 'Web for TikTok',
-      rating: '4.2',
-      reviewCount: '5',
-      coverURL: 'https://lh3.googleusercontent.com/OCiLHYZuzVFlY2AEhGHwbKwat6otbC7t0S0OEv-Ik49DL8-mdAQ3zafuMgLLL9pAoi4Rm0NPGf00kTCzm_CoQLQPdQ',
-      description: 'Browse and download your favorite videos on TikTok. Upload videos'
-    },
-    {
-      id: 'okieokifcnnigcgceookjighhplbhcip',
-      iconURL: 'https://lh3.googleusercontent.com/jP8Gu2FZUWbYixUolNJ9gimelrx09zph0ve0lyKJotPcbsnP-edeGWq2CLmGdS1kUXeSTu9_971OZ9P3u8cZ_-ET_W4',
-      title: 'Denote: Save Ads for TikTok \\u0026 Facebook',
-      rating: '4.375',
-      reviewCount: '24',
-      coverURL: 'https://lh3.googleusercontent.com/BbaCzLiooCqtOcHyPflKWwfnwtQxhUbh9yDSxSvPCLXx0OZsiO91DXtXoQ61VDQ7lvltE6aDuZF_Z9TKLvtTF3nY',
-      description: 'Save creative video ads from TikTok Creative Center and Facebook Ad Library with one click.'
-    },
-    //...
-  ]
+    [
+  {
+    id: 'ofpnmcalabcbjgholdjcjblkibolbppb',
+    iconURL: 'https://lh3.googleusercontent.com/rLhEeo6TgST5H4WmCNWKO4fDJDvZVGfoXJNt035pGtnamBRJenmcXhqiI3RvZbRM71LWlQkTL6B825XzbAwAx52c9Q',
+    title: 'Monica - Your AI Copilot powered by ChatGPT4',
+    rating: '4.901862789641072',
+    reviewCount: '15407',
+    coverURL: 'https://lh3.googleusercontent.com/qlN70mLwKZnfWS8U51LGosEj1fOaF3gt_q5PDfN2HalyTpO2Dxh997y4CoZWE1N7oW3ISP9Y0ZxyUlrrTxJmHLaFbQ',
+    description: 'Your AI Copilot powered by GPT-4. Answers complex questions. Writes emails reads articles searches smartly. Usable everywhere.',
+    publish: 'monica.im',
+    ifEstablish: 'true',
+    ifFeatured: 'true',
+    category: 'productivity/tools',
+    categoryNo: '5',
+    userCount: '2000000'
+  },
+  {
+    id: 'pmbmfhhbllfiifceolpogjoagoiollkc',
+    iconURL: 'https://lh3.googleusercontent.com/HdWI7e2ftmvKA6tmnW7Cyhlq3pkA_hrjWih2I7kBAWbbEIhoVTYsn-hAO1AJNFvVY2wH0KOZb4ZVLUv8PtmDtXV-wQ',
+    title: 'Monica Search - New Tab for AI Search',
+    rating: '3.9047619047619047',
+    reviewCount: '21',
+    coverURL: 'https://lh3.googleusercontent.com/MtbY2KnnR_3RJi6y5-VHVST_ht4B9GnQQpWbvVdWEdIVFCcOyMj1ba8XMiJ9YNI6Yy_vOFTs9abNtCk2BnZ_5pOJp-o',
+    description: 'Experience the free unlimited search capabilities of ChatGPT!',
+    publish: 'monica.im',
+    ifEstablish: 'true',
+    ifFeatured: 'null',
+    category: 'productivity/workflow',
+    categoryNo: '4',
+    userCount: '10000'
+  },
+  {
+    id: 'kbhaffhbhcfmogkkbfanilniagcefnhi',
+    iconURL: 'https://lh3.googleusercontent.com/_WjLv3duUHKMcxhNLvh8F8foITtjesi4Z0YvZIb0C1HXzgz83oTqs-qMi_Fzz0vl5AkElbjjYPuztLnQEyvL-_cXsA',
+    title: 'Jarvis AI: Chat GPT Bing Claude Bard Grok',
+    rating: '4.923705722070845',
+    reviewCount: '367',
+    coverURL: 'https://lh3.googleusercontent.com/M6xkr64CgaD0MriN4DF8VN3ngKCt_Vygqaj4jC2ffDmnKRC-M_z2D97mldC-4UAepPKGLQvIgqih61JC3GH6I3HD',
+    description: 'Jarvis AI Copilot Chatbot by ChatGPT quillbot Grok Jasper Xai to write email better grammar checker \\u0026 spelling mail enhancer',
+    publish: 'jarvis.cx',
+    ifEstablish: 'true',
+    ifFeatured: 'true',
+    category: 'productivity/tools',
+    categoryNo: '5',
+    userCount: '6000'
+  }
+  //...
+]
 }
 ```
 
