@@ -176,16 +176,16 @@ fullSearch('tiktok', 10);
     //...
   ]
 }
-``
+```
 
 ### Full Search Options
 
-``` json
-  iterface SearchOptions {
-    limit?: number; 
-    minRating?: number; 
-    ifFeatured?: boolean;
-    ifWellKnown?: boolean;
+``` js
+iterface SearchOptions {
+    limit?: number; // Number of results to return
+    minRating?: number; // Minimum rating value
+    ifFeatured?: boolean; // If the extension is featured by Chrome
+    ifWellKnown?: boolean; // If the extension is made by a well-known developer
 }
 ```
 

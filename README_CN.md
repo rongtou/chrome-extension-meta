@@ -150,13 +150,13 @@ fullSearch('tiktok', 10);
 }
 ```
 
-###  全面搜索参数
-``` json
-  iterface SearchOptions {
-    limit?: number; 
-    minRating?: number; 
-    ifFeatured?: boolean;
-    ifWellKnown?: boolean;
+###  全面搜索参数  
+``` ts
+iterface SearchOptions {
+    limit?: number;  // 返回结果的最大数量
+    minRating?: number;  // 最低评分 0-5
+    ifFeatured?: boolean; // 是否为chrome store推荐
+    ifWellKnown?: boolean; // 是否为知名开发者开发
 }
 ```
 
