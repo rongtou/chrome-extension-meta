@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-meta",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Node.js package to fetch statistics from the Chrome Web Store",
   "main": "index.js",
   "types": "index.d.ts",
@@ -8,6 +8,7 @@
     "test": "mocha",
     "test-watch": "mocha --reporter spec --watch",
     "start": "node index.js",
+    "release": "bumpp && npm publish",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "change-log": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
@@ -28,6 +29,7 @@
   },
   "homepage": "https://github.com/leizhenpeng/chrome-extension-meta",
   "devDependencies": {
+    "bumpp": "^9.4.0",
     "chai": "^4.2.0",
     "conventional-changelog-cli": "^4.1.0",
     "coveralls": "^3.1.0",
