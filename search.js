@@ -30,9 +30,9 @@ function processData(rawData) {
 }
 
 // 解析数据
-// 解析数据
 function parseFields(block, patterns) {
-    const entries = block.replace(/null,?/g, '').replace(/\[\[/g, '[').replace(/\]\]/g, ']').split('],[');
+    const entries = block.replace(/, /g, ' ').
+        replace(/\[\[/g, '[').replace(/\]\]/g, ']').split('],[');
     return entries.map(entry => {
         const fields = entry.split(',').map(field => field.replace(/^["[]+|["\]]+$/g, '').trim());
 
@@ -47,6 +47,8 @@ function parseFields(block, patterns) {
                 }
             }
         });
+        // 过滤 unkown 字段
+        delete result.unknow;
 
         return result;
     }).filter(result => Object.keys(result).length);
@@ -77,7 +79,7 @@ async function quickSearch(keyword) {
             { name: 'version', regex: /\d+(?:\.\d+)?/ },
             { name: 'iconURL', regex: /https?:\/\/[^\s"]+/ }
         ];
-    
+
         const results = parseFields(dataBlocks, patterns);
         return { success: true, error: null, number: results.length, data: results };
     } catch (error) {
@@ -97,7 +99,7 @@ async function fullSearch(keyword, options = {}) {
 
     const baseUrl = 'https://chromewebstore.google.com/_/ChromeWebStoreConsumerFeUi/data/batchexecute';
     const queryParams = {
-        'rpcids': 'xY2Ddd',
+        'rpcids': 'zTyKYc',
         'source-path': '/search/%E8%B1%86%E7%93%A3',
         'bl': 'boq_chrome-webstore-consumerfe-ui_20240306.00_p1',
         'hl': 'en-GB',
@@ -108,24 +110,40 @@ async function fullSearch(keyword, options = {}) {
     };
 
     const validMinRating = Math.max(0, Math.min(minRating, 5));
+    const minRatingFilter = validMinRating === 0 ? "null" : validMinRating.toString();
     const featuredFilter = ifFeatured ? "1" : "null";
     const wellKnownFilter = ifWellKnown ? "1" : "null";
 
     const bodyObject = {
-        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${limit}],${validMinRating},${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
+        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${limit}],${minRatingFilter},null,${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
     };
+    console.log('bodyObject', bodyObject)
 
     try {
         const rawData = await fetchData(baseUrl, queryParams, bodyObject);
+        // console.log('rawData', rawData)
         const dataBlocks = processData(rawData);
+        console.log('dataBlocks', dataBlocks)
         const patterns = [
             { name: 'id', regex: /^[a-z0-9]{32}$/ },
             { name: 'iconURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
             { name: 'title', regex: /.+/ },
-            { name: 'rating', regex: /^\d+(\.\d+)?$/ },
-            { name: 'reviewCount', regex: /^\d+$/ },
+            // 修改，rating 和 reviewCount 可能为 null
+            { name: 'rating', regex: /^\d+(\.\d+)?$|null/ },
+            { name: 'reviewCount', regex: /^\d+$|null/ },
             { name: 'coverURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
-            { name: 'description', regex: /.+/ }
+            // 允许空字符串
+            { name: 'description', regex: /[^\s]+/ },
+            { name: 'publish', regex: /.+/ },
+            // true or null
+            { name: 'ifEstablish', regex: /true|null/ },
+            { name: 'ifFeatured', regex: /true|null/ },
+            // 必须包含 / 例如 productivity/tools 
+            { name: 'category', regex: /.+\/.+/ },
+            { name: 'categoryNo', regex: /^\d+$/ },
+            { name: 'unknow', regex: /^\d+$/ },
+            { name: 'userCount', regex: /^\d+$/ },
+
         ];
         const results = parseFields(dataBlocks, patterns);
         return { success: true, error: null, number: results.length, data: results };

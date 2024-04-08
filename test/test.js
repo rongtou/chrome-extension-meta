@@ -162,15 +162,24 @@ describe.only('chorm full searh', () => {
 	});
 	it('grade make it', async () => {
 		const data = await fullSearch('豆瓣', {
-			quantity: 10,
+			limit: 10,
 			minRating: 4,
 		});
 		assert.isNull(data.error);
 		assert.equal(data.number, 10);
 		assert.isAbove(data.number, 10);
 	});
-
 	it.only('should handle existing keyword', async () => {
+		const data = await fullSearch('monica', {
+			limit: 3
+		});
+		console.log(data.data);
+		assert.equal(data.success, true);
+		assert.isNull(data.error);
+		// assert.isAbove(data.data.length, 3);
+		// assert.equal(data.number, 10);
+	});
+	it('should handle existing keyword', async () => {
 		const data_ = await fullSearch('豆瓣', {
 			quantity: 100,
 			minRating: 5
@@ -183,7 +192,7 @@ describe.only('chorm full searh', () => {
 	});
 
 	// ifFeatured = false,
-	it.only('should handle existing keyword', async () => {
+	it('should handle existing keyword', async () => {
 		const data = await fullSearch('豆瓣', {
 			quantity: 100,
 			ifWellKnown: false

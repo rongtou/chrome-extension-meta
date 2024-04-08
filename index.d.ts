@@ -1,5 +1,20 @@
 declare module "chrome-extension-meta" {
-  interface ExtensionData {
+  interface ExtensionSearchMeta {
+    id: string;
+    iconURL: string;
+    title: string;
+    rating: string;
+    reviewCount: string;
+    coverURL: string;
+    description: string;
+    publish: string;
+    ifEstablish: string;
+    ifFeatured: string;
+    category: string;
+    categoryNo: string;
+    userCount: string;
+  }
+  interface ExtensionDeatilData {
     extensionId: string;
     iconUrl: string;
     url: string;
@@ -25,14 +40,14 @@ declare module "chrome-extension-meta" {
     minRating?: number;
     ifFeatured?: boolean;
     ifWellKnown?: boolean;
-}
+  }
 
 
   interface SearchResponse {
     success: boolean;
     error: string | null;
     number: number;
-    data: ExtensionData[];
+    data: ExtensionSearchMeta[];
   }
 
   interface DetailResponse {
@@ -48,5 +63,5 @@ declare module "chrome-extension-meta" {
   ): Promise<SearchResponse>;
   function getExtMeta(extensionID: string | string[]): Promise<DetailResponse>;
 
-  export { quickSearch, fullSearch,getExtMeta };
+  export { quickSearch, fullSearch, getExtMeta };
 }
