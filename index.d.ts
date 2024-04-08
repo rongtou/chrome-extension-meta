@@ -64,4 +64,5 @@ declare module "chrome-extension-meta" {
   function getExtMeta(extensionID: string | string[]): Promise<DetailResponse>;
 
   export { quickSearch, fullSearch, getExtMeta };
+  export type { ExtensionSearchMeta, ExtensionDeatilData, SearchOptions, SearchResponse, DetailResponse }; 
 }
