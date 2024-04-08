@@ -131,10 +131,12 @@ async function fullSearch(keyword, options = {}) {
             // 修改，rating 和 reviewCount 可能为 null
             { name: 'rating', regex: /^\d+(\.\d+)?$|null/ },
             { name: 'reviewCount', regex: /^\d+$|null/ },
-            { name: 'coverURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
+            // 允许为null
+            { name: 'coverURL', regex: /^https:\/\/lh3\.googleusercontent\.com\/|null/ },
             // 允许空字符串
             { name: 'description', regex: /[^\s]+/ },
-            { name: 'publish', regex: /.+/ },
+            // 必须包含. 例如 mozilla.org monica.log
+            { name: 'publish', regex: /.+\..+/ },
             // true or null
             { name: 'ifEstablish', regex: /true|null/ },
             { name: 'ifFeatured', regex: /true|null/ },

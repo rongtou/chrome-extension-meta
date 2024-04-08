@@ -171,7 +171,7 @@ describe.only('chorm full searh', () => {
 	});
 	it.only('should handle existing keyword', async () => {
 		const data = await fullSearch('monica', {
-			limit: 3
+			limit: 10
 		});
 		console.log(data.data);
 		assert.equal(data.success, true);
