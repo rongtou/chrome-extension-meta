@@ -160,13 +160,43 @@ describe.only('chorm full searh', () => {
 		assert.isAbove(data.data.length, 3);
 		// assert.equal(data.number, 10);
 	});
-	it.only('should handle existing keyword', async () => {
-		const data = await fullSearch('豆瓣', 100, 0, false,true);
-		console.log(data.data);
-		assert.equal(data.success, true);
+	it('grade make it', async () => {
+		const data = await fullSearch('豆瓣', {
+			quantity: 10,
+			minRating: 4,
+		});
 		assert.isNull(data.error);
 		assert.equal(data.number, 10);
 		assert.isAbove(data.number, 10);
 	});
+
+	it.only('should handle existing keyword', async () => {
+		const data_ = await fullSearch('豆瓣', {
+			quantity: 100,
+			minRating: 5
+		});
+		const data__ = await fullSearch('豆瓣', {
+			quantity: 100,
+			minRating: 4
+		});
+		assert.notEqual(data_.data.length, data__.data.length);
+	});
+
+	// ifFeatured = false,
+	it.only('should handle existing keyword', async () => {
+		const data = await fullSearch('豆瓣', {
+			quantity: 100,
+			ifWellKnown: false
+		});
+		console.log(data.data.length);
+		const data_ = await fullSearch('豆瓣', {
+			quantity: 100,
+			ifWellKnown: true
+		});
+		console.log(data_.data.length);
+		assert.notEqual(data.data.length, data_.data.length);
+	});
 })
 
+
+// test qu

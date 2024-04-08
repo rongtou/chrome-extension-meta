@@ -8,7 +8,6 @@ declare module "chrome-extension-meta" {
     installCount: number;
     rating: number;
     reviewCount: number;
-    // Additional fields from detail.js
     detailedDescription?: string;
     additionalImages?: string[];
     version?: string;
@@ -20,6 +19,14 @@ declare module "chrome-extension-meta" {
     websiteUrl?: string;
     privacyPolicyUrl?: string;
   }
+
+  interface SearchOptions {
+    quantity?: number;
+    minRating?: number;
+    ifFeatured?: boolean;
+    ifWellKnown?: boolean;
+}
+
 
   interface SearchResponse {
     success: boolean;
@@ -37,7 +44,7 @@ declare module "chrome-extension-meta" {
   function quickSearch(keyword: string): Promise<SearchResponse>;
   function fullSearch(
     keyword: string,
-    requestQuantity?: number
+    options?: SearchOptions
   ): Promise<SearchResponse>;
   function extMeta(extensionID: string | string[]): Promise<DetailResponse>;
 

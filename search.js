@@ -87,7 +87,14 @@ async function quickSearch(keyword) {
 }
 
 // 完整搜索
-async function fullSearch(keyword, requestQuantity = 10, minRating = 0, featured = false, wellKnownPublisher = false) {
+async function fullSearch(keyword, options = {}) {
+    const {
+        quantity = 10,
+        minRating = 0,
+        ifFeatured = false,
+        ifWellKnown = false
+    } = options;
+
     const baseUrl = 'https://chromewebstore.google.com/_/ChromeWebStoreConsumerFeUi/data/batchexecute';
     const queryParams = {
         'rpcids': 'xY2Ddd',
@@ -99,32 +106,26 @@ async function fullSearch(keyword, requestQuantity = 10, minRating = 0, featured
         'soc-device': '1',
         'rt': 'c'
     };
-    // 限制minRating参数的值为0到5之间的数字
-    minRating = Math.max(0, Math.min(minRating, 5));
-    // 精选扩展程序
-    const featuredFilter = featured ? "1" : "null";
-    // 知名发布者
-    const publisherFilter = wellKnownPublisher ? "1" : "null";
+
+    const validMinRating = Math.max(0, Math.min(minRating, 5));
+    const featuredFilter = ifFeatured ? "1" : "null";
+    const wellKnownFilter = ifWellKnown ? "1" : "null";
 
     const bodyObject = {
-        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${requestQuantity}],${minRating},${featuredFilter},${publisherFilter},1]]]]",null,"1"]]]`
+        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${quantity}],${validMinRating},${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
     };
 
-    // const bodyObject = {
-    //     'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${requestQuantity}],null,null,null,null,1]]]]",null,"1"]]]`
-    // };
     try {
         const rawData = await fetchData(baseUrl, queryParams, bodyObject);
         const dataBlocks = processData(rawData);
-        // console.log('dataBlocks',dataBlocks)
         const patterns = [
             { name: 'id', regex: /^[a-z0-9]{32}$/ },
             { name: 'iconURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
-            { name: 'title', regex: /.+/ }, // Assuming title can be any text
+            { name: 'title', regex: /.+/ },
             { name: 'rating', regex: /^\d+(\.\d+)?$/ },
             { name: 'reviewCount', regex: /^\d+$/ },
             { name: 'coverURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
-            { name: 'description', regex: /.+/ } // Assuming description can be any text, maybe improved based on specific needs
+            { name: 'description', regex: /.+/ }
         ];
         const results = parseFields(dataBlocks, patterns);
         return { success: true, error: null, number: results.length, data: results };
