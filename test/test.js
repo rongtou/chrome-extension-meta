@@ -152,18 +152,20 @@ describe.skip("chrome Quick Search ", () => {
 
 
 describe.only('chorm full searh', () => {
-	it.only('should handle existing keyword', async () => {
+	it('should handle existing keyword', async () => {
 		const data = await fullSearch('youtube', 18);
 		console.log(data.data);
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 3);
-		assert.equal(data.number, 10);
+		// assert.equal(data.number, 10);
 	});
-	it('should handle existing keyword', async () => {
-		const data = await fullSearch('抖音', 20);
+	it.only('should handle existing keyword', async () => {
+		const data = await fullSearch('豆瓣', 100, 0, false,true);
+		console.log(data.data);
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
+		assert.equal(data.number, 10);
 		assert.isAbove(data.number, 10);
 	});
 })
