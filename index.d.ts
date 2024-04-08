@@ -21,7 +21,7 @@ declare module "chrome-extension-meta" {
   }
 
   interface SearchOptions {
-    quantity?: number;
+    limit?: number;
     minRating?: number;
     ifFeatured?: boolean;
     ifWellKnown?: boolean;
@@ -46,7 +46,7 @@ declare module "chrome-extension-meta" {
     keyword: string,
     options?: SearchOptions
   ): Promise<SearchResponse>;
-  function extMeta(extensionID: string | string[]): Promise<DetailResponse>;
+  function getExtMeta(extensionID: string | string[]): Promise<DetailResponse>;
 
-  export default { quickSearch, fullSearch, extMeta };
+  export { quickSearch, fullSearch,getExtMeta };
 }

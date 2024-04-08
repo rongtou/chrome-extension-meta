@@ -50,7 +50,7 @@ const regexPatterns = {
     email: /Developer<\/div>[\s\S]*?<div[^>]*?>([\w.-]+@[\w.-]+\.\w+)<\/div>/
 };
 
-async function extMeta(inputIDs) {
+async function getExtMeta(inputIDs) {
     const extensionIDs = [].concat(inputIDs);
     const responses = {};
     for (let extensionID of extensionIDs) {
@@ -104,5 +104,5 @@ async function extMeta(inputIDs) {
 
 
 module.exports = {
-    extMeta
+    getExtMeta
 };

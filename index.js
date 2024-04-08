@@ -1,8 +1,8 @@
-const { extMeta } = require('./detail');
+const { getExtMeta } = require('./detail');
 const { quickSearch,fullSearch } = require('./search');
 
 module.exports = {
-    extMeta,
+    getExtMeta,
     quickSearch,
     fullSearch
 };

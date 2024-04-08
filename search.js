@@ -89,7 +89,7 @@ async function quickSearch(keyword) {
 // 完整搜索
 async function fullSearch(keyword, options = {}) {
     const {
-        quantity = 10,
+        limit = 10,
         minRating = 0,
         ifFeatured = false,
         ifWellKnown = false
@@ -112,7 +112,7 @@ async function fullSearch(keyword, options = {}) {
     const wellKnownFilter = ifWellKnown ? "1" : "null";
 
     const bodyObject = {
-        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${quantity}],${validMinRating},${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
+        'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${limit}],${validMinRating},${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
     };
 
     try {
