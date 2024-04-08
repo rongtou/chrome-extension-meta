@@ -117,13 +117,13 @@ async function fullSearch(keyword, options = {}) {
     const bodyObject = {
         'f.req': `[[["zTyKYc","[[null,[null,null,null,[\\"${keyword}\\",[${limit}],${minRatingFilter},null,${featuredFilter},${wellKnownFilter},1]]]]",null,"1"]]]`
     };
-    console.log('bodyObject', bodyObject)
+    // console.log('bodyObject', bodyObject)
 
     try {
         const rawData = await fetchData(baseUrl, queryParams, bodyObject);
         // console.log('rawData', rawData)
         const dataBlocks = processData(rawData);
-        console.log('dataBlocks', dataBlocks)
+        // console.log('dataBlocks', dataBlocks)
         const patterns = [
             { name: 'id', regex: /^[a-z0-9]{32}$/ },
             { name: 'iconURL', regex: /^https:\/\/lh3\.googleusercontent\.com\// },
