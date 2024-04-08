@@ -42,7 +42,7 @@ const chromeStoreApi = require('chrome-extension-meta');
 ```javascript
 async function getExtensionDetails(extensionID) {
     try {
-        const data = await chromeStoreApi.extMeta(extensionID);
+        const data = await chromeStoreApi.getExtMeta(extensionID);
         if (data.success) {
             console.log(data); // 记录扩展详情
         } else {
@@ -64,7 +64,7 @@ getExtensionDetails('gkkmiofalnjagdcjheckamobghglpdpm');
 ```javascript
 async function getMultipleExtensionsDetails(extensionIDs) {
     try {
-        const data = await chromeStoreApi.extMeta(extensionIDs);
+        const data = await chromeStoreApi.getExtMeta(extensionIDs);
         console.log(data); // 记录每个扩展 ID 的详情
     } catch (error) {
         console.error(error); // 处理异常
@@ -117,7 +117,9 @@ quickSearch('youtube');
 ```javascript
 async function fullSearch(query, count) {
     try {
-        const results = await chromeStoreApi.fullSearch(query, count);
+        const results = await chromeStoreApi.fullSearch(query, {
+          limit:count
+        });
         console.log(results); // 记录详细的搜索结果
     } catch (error) {
         console.error(error);
@@ -145,6 +147,16 @@ fullSearch('tiktok', 10);
     },
     // 其他结果...
   ]
+}
+```
+
+###  全面搜索参数
+``` json
+  iterface SearchOptions {
+    limit?: number; 
+    minRating?: number; 
+    ifFeatured?: boolean;
+    ifWellKnown?: boolean;
 }
 ```
 

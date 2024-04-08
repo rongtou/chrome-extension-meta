@@ -43,7 +43,7 @@ Retrieve information for a single extension by its ID.
 ```javascript
 async function getExtensionDetails(extensionID) {
     try {
-        const data = await chromeStoreApi.extMeta(extensionID);
+        const data = await chromeStoreApi.getExtensionDetails(extensionID);
         if (data.success) {
             console.log(data); // Log the extension details
         } else {
@@ -127,7 +127,9 @@ Perform a comprehensive search to get detailed information about extensions.
 ```js
 async function fullSearch(query, count) {
     try {
-        const results = await chromeStoreApi.fullSearch(query, count);
+        const results = await chromeStoreApi.fullSearch(query, {
+          limit:count
+        });
         console.log(results); // Log the detailed search results
     } catch (error) {
         console.error(error);
@@ -174,7 +176,19 @@ fullSearch('tiktok', 10);
     //...
   ]
 }
+``
+
+### Full Search Options
+
+``` json
+  iterface SearchOptions {
+    limit?: number; 
+    minRating?: number; 
+    ifFeatured?: boolean;
+    ifWellKnown?: boolean;
+}
 ```
+
 
 ## Returned Data Structure 📐
 
@@ -220,6 +234,7 @@ An object is returned with each key as an extension ID, and the value is the res
 | `email`               | The developer's contact email.                                       |
 | `websiteUrl`          | The developer's website.                                             |
 | `privacyPolicyUrl`    | The URL to the developer's privacy policy.                           |
+
 
 ## Notes 📝
 
