@@ -218,6 +218,17 @@ describe.only('chrome comment', function () {
 		assert.strictEqual(data.data.length, 300);
 	});
 
+	it('lanuguage test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 3,
+			lang: 'zh'
+		});
+		const allChinese = data.data.every(item => {
+			return /[\u4e00-\u9fa5]/.test(item.review);
+		});
+		assert.isTrue(allChinese);
+	});
+
 	it('sturcture test', async () => {
 		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
 			limit: 2

@@ -28,7 +28,8 @@ function processData(rawData) {
 
 const getExtComments = async (keyword, options = {}) => {
     const {
-        limit = 10
+        limit = 10,
+        lang = "all"
     } = options;
 
     const baseUrl = 'https://chromewebstore.google.com/_/ChromeWebStoreConsumerFeUi/data/batchexecute';
@@ -42,7 +43,7 @@ const getExtComments = async (keyword, options = {}) => {
         'rt': 'c'
     };
     const bodyObject = {
-        'f.req': `[[["x1DgCd","[\\"${keyword}\\",[${limit}],2,null,null,[\\"en\\"]]",null,"generic"]]]`
+        'f.req': `[[["x1DgCd","[\\"${keyword}\\",[${limit}],2,null,null,[\\"${lang}\\"]]",null,"generic"]]]`
     };
 
     try {
