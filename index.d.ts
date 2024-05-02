@@ -73,6 +73,8 @@ declare module "chrome-extension-meta" {
 
   interface CommentOptions {
     limit?: number;
+    sort?: "recent" | "helper" | "high-rate-first" | "low-rate-first";
+    lang?: "en" | "zh" | 'all'
   }
 
   function quickSearch(keyword: string): Promise<SearchResponse>;

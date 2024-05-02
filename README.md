@@ -12,8 +12,9 @@
 
 ## Key Features 🗝️
 
-- **Get Extension Details:** Retrieve detailed information about a specific extension by its ID.
 - **QuickSearch and FullSearch:** Quickly find extensions with partial data or perform comprehensive searches with detailed results.
+- **Get Extension Details:** Retrieve detailed information about a specific extension by its ID.
+- **Get Comments:** Retrieve comments for a specific extension by its ID.
 - **Efficient Retrieval:** Retrieve extension details using a single ID, an array of IDs, or through quick and full search functionalities.
 - **JSON-Formatted Response:** The API returns information in a well-structured JSON format for easy data processing.
 - **Asynchronous Support:** Supports asynchronous operations using `async/await` for a smooth development flow.
@@ -253,6 +254,54 @@ An object is returned with each key as an extension ID, and the value is the res
 | `email`               | The developer's contact email.                                       |
 | `websiteUrl`          | The developer's website.                                             |
 | `privacyPolicyUrl`    | The URL to the developer's privacy policy.                           |
+
+### Get Comments
+
+Retrieve comments for a specific extension by its ID.
+
+```javascript
+async function getExtensionComments(extensionID) {
+    try {
+        const data = await chromeStoreApi.getExtComments(extensionID);
+        if (data.success) {
+            console.log(data); // Log the extension comments
+        } else {
+            console.error(data.error); // Handle errors
+        }
+    } catch (error) {
+        console.error(error); // Handle exceptions
+    }
+}
+
+// Example usage:
+getExtensionComments('gkkmiofalnjagdcjheckamobghglpdpm');
+
+// Example Response
+{
+  success: true,
+  error: null,
+  number: 10,
+  data: [
+    {
+        userId: 'fc5ec3b2-519e-43e7-b13e-9d3ed3d64b09',
+  name: 'Vamsi Nallamalli',
+  avatarUrl: 'https://lh3.googleusercontent.com/a-/ALV-UjVGU8kqRVs4VEEsh8bUGoMixXYQXOhzCWyJuMvy45qeeajyY8OYag=s32',
+  rating: 1,
+  review: 'asking to login everytime i open chrome, even after giving cookies\n' +
+    'Other AI like Merlin, Sider are too good in this problem for side bar Auto search in Google search',
+  version: '5.2.1'
+    }]}
+```
+
+Comment Search Option
+```json
+  interface CommentOptions {
+    limit?: number;
+    sort?: "recent" | "helper" | "high-rate-first" | "low-rate-first";
+    lang?: "en" | "zh" | 'all'
+  }
+``` 
+
 
 
 ## Notes 📝

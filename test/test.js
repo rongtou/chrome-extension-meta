@@ -224,7 +224,7 @@ describe.only('chrome comment', function () {
 		});
 
 		const firstComment = data.data[0];
-		// console.log('firstComment', firstComment)
+		console.log('firstComment', firstComment)
 		assert.hasAllKeys(firstComment, ['userId', 'name', 'avatarUrl', 'rating', 'review', 'version']);
 	});
 });
