@@ -26,7 +26,11 @@ function processData(rawData) {
     return data;
 }
 
-const getComment = async (keyword, size) => {
+const getExtComments = async (keyword, options = {}) => {
+    const {
+        limit = 10
+    } = options;
+
     const baseUrl = 'https://chromewebstore.google.com/_/ChromeWebStoreConsumerFeUi/data/batchexecute';
     const queryParams = {
         'rpcids': 'x1DgCd',
@@ -38,7 +42,7 @@ const getComment = async (keyword, size) => {
         'rt': 'c'
     };
     const bodyObject = {
-        'f.req': `[[["x1DgCd","[\\"${keyword}\\",[${size}],2,null,null,[\\"en\\"]]",null,"generic"]]]`
+        'f.req': `[[["x1DgCd","[\\"${keyword}\\",[${limit}],2,null,null,[\\"en\\"]]",null,"generic"]]]`
     };
 
     try {
@@ -56,12 +60,13 @@ const getComment = async (keyword, size) => {
                 version: entry[11]
             };
         });
-        return { success: true, error: null, data: usefulData };
+        const num = usefulData.length;
+        return { success: true, error: null, number: num, data: usefulData };
     } catch (error) {
         return { success: false, error: error.message, data: null };
     }
 };
 
 module.exports = {
-    getComment
+    getExtComments
 };

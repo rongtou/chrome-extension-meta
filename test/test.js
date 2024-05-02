@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const { extMeta } = require('../index.js');
 const { quickSearch } = require('../index.js');
 const { fullSearch } = require('../search.js');
-const { getComment } = require('../comment.js');
+const { getExtComments } = require('../comment.js');
 
 describe.skip("Chrome Web Store API Tests", function () {
 	this.timeout(6000); // Set timeout for all tests in this describe block
@@ -212,12 +212,16 @@ describe.only('chrome comment', function () {
 	this.timeout(8000); // 设置较长的超时时间，以防 API 响应较慢
 
 	it('amount test', async () => {
-		const data = await getComment('ofpnmcalabcbjgholdjcjblkibolbppb', 300);
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 300
+		});
 		assert.strictEqual(data.data.length, 300);
 	});
 
 	it('sturcture test', async () => {
-		const data = await getComment('ofpnmcalabcbjgholdjcjblkibolbppb', 10);
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 2
+		});
 
 		const firstComment = data.data[0];
 		// console.log('firstComment', firstComment)
