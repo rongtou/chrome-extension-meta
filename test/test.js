@@ -142,7 +142,7 @@ describe.skip("chrome Quick Search ", () => {
 
 	it("should handle existing keyword", async () => {
 		const data = await quickSearch('飞书');
-		console.log('data',data)
+		console.log('data', data)
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 0);
@@ -208,17 +208,20 @@ describe.skip('chorm full searh', () => {
 	});
 })
 
-describe.only('chrome comment', function() {
+describe.only('chrome comment', function () {
 	this.timeout(8000); // 设置较长的超时时间，以防 API 响应较慢
 
-	it('Monica comment', async () => {
-		const data = await getComment('ofpnmcalabcbjgholdjcjblkibolbppb', 10);
-		console.log(data);
+	it('amount test', async () => {
+		const data = await getComment('ofpnmcalabcbjgholdjcjblkibolbppb', 300);
+		assert.strictEqual(data.data.length, 300);
 	});
 
-	it('Sider comment', async () => {
-		const data = await getComment('difoiogjjojoaoomphldepapgpbgkhkb', 10);
-		console.log(data);
+	it('sturcture test', async () => {
+		const data = await getComment('ofpnmcalabcbjgholdjcjblkibolbppb', 10);
+
+		const firstComment = data.data[0];
+		// console.log('firstComment', firstComment)
+		assert.hasAllKeys(firstComment, ['userId', 'name', 'avatarUrl', 'rating', 'review', 'version']);
 	});
 });
 
