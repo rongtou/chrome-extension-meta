@@ -1,9 +1,11 @@
 # **chrome-extension-meta** 🌐
 
 <samp>
-
-[**简体中文**](./README_CN.md) · [**English**](./README.md)
-
+    
+ 👉 Experience [demo api](https://chrome-store.zeabur.app/reference) Here. 
+ 
+ 🫰 Auth Token: 0081jCQMz5
+ 
 </samp>
 
 ## Introduction 📜
