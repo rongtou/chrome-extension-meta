@@ -2,7 +2,7 @@
 
 <samp>
     
- 👉 Experience [demo api](https://chrome-store.zeabur.app/reference) here. 
+ 👉 Explore [demo api](https://chrome-store.zeabur.app/reference) here. 
  
  🫰 Auth token: 0081jCQMz5
  
