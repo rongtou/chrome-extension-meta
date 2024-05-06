@@ -238,6 +238,15 @@ describe.only('chrome comment', function () {
 		console.log('firstComment', firstComment)
 		assert.hasAllKeys(firstComment, ['userId', 'name', 'avatarUrl', 'rating', 'review', 'version']);
 	});
+
+	it('sort test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 10,
+			lang: 'zh',
+			sort: 'low-rate-first'
+		});
+		console.log(data.data);
+	});
 });
 
 // test qu
