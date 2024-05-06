@@ -35,6 +35,14 @@ declare module "chrome-extension-meta" {
     privacyPolicyUrl?: string;
   }
 
+  interface CommentDetail {
+    userId: string;
+    name: string;
+    avatarUrl: string;
+    rating: number;
+    review: string;
+    version: string;
+  }
   interface SearchOptions {
     limit?: number;
     minRating?: number;
@@ -56,13 +64,28 @@ declare module "chrome-extension-meta" {
     details?: ExtensionData;
   }
 
+  interface CommentResponse {
+    success: boolean;
+    error: string | null;
+    number: number;
+    data: CommentDetail[];
+  }
+
+  interface CommentOptions {
+    limit?: number;
+    sort?: "recent" | "helper" | "high-rate-first" | "low-rate-first";
+    lang?: "en" | "zh" | 'all'
+  }
+
   function quickSearch(keyword: string): Promise<SearchResponse>;
   function fullSearch(
     keyword: string,
     options?: SearchOptions
   ): Promise<SearchResponse>;
   function getExtMeta(extensionID: string | string[]): Promise<DetailResponse>;
+  function getExtComments(extensionID: string, options?: CommentOptions): Promise<CommentResponse>;
 
-  export { quickSearch, fullSearch, getExtMeta };
-  export type { ExtensionSearchMeta, ExtensionDeatilData, SearchOptions, SearchResponse, DetailResponse }; 
+
+  export { quickSearch, fullSearch, getExtMeta, getExtComments };
+  export type { ExtensionSearchMeta, ExtensionDeatilData, SearchOptions, SearchResponse, DetailResponse, CommentResponse, CommentDetail };
 }

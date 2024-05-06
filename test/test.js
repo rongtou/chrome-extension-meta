@@ -2,6 +2,7 @@ const assert = require('chai').assert;
 const { extMeta } = require('../index.js');
 const { quickSearch } = require('../index.js');
 const { fullSearch } = require('../search.js');
+const { getExtComments } = require('../comment.js');
 
 describe.skip("Chrome Web Store API Tests", function () {
 	this.timeout(6000); // Set timeout for all tests in this describe block
@@ -136,12 +137,12 @@ describe.skip("chrome Quick Search ", () => {
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 0);
 		assert.isBelow(data.data.length, 11);
-		
+
 	});
 
 	it("should handle existing keyword", async () => {
 		const data = await quickSearch('飞书');
-		console.log('data',data)
+		console.log('data', data)
 		assert.equal(data.success, true);
 		assert.isNull(data.error);
 		assert.isAbove(data.data.length, 0);
@@ -151,7 +152,7 @@ describe.skip("chrome Quick Search ", () => {
 })
 
 
-describe.only('chorm full searh', () => {
+describe.skip('chorm full searh', () => {
 	it('should handle existing keyword', async () => {
 		const data = await fullSearch('youtube', 18);
 		console.log(data.data);
@@ -207,5 +208,45 @@ describe.only('chorm full searh', () => {
 	});
 })
 
+describe.only('chrome comment', function () {
+	this.timeout(8000); // 设置较长的超时时间，以防 API 响应较慢
+
+	it('amount test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 300
+		});
+		assert.strictEqual(data.data.length, 300);
+	});
+
+	it('lanuguage test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 3,
+			lang: 'zh'
+		});
+		const allChinese = data.data.every(item => {
+			return /[\u4e00-\u9fa5]/.test(item.review);
+		});
+		assert.isTrue(allChinese);
+	});
+
+	it('sturcture test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 2
+		});
+
+		const firstComment = data.data[0];
+		console.log('firstComment', firstComment)
+		assert.hasAllKeys(firstComment, ['userId', 'name', 'avatarUrl', 'rating', 'review', 'version']);
+	});
+
+	it('sort test', async () => {
+		const data = await getExtComments('ofpnmcalabcbjgholdjcjblkibolbppb', {
+			limit: 10,
+			lang: 'zh',
+			sort: 'low-rate-first'
+		});
+		console.log(data.data);
+	});
+});
 
 // test qu
