@@ -1,4 +1,8 @@
 const fetch = require('node-fetch');
+const HttpsProxyAgent = require('https-proxy-agent');
+
+const proxyUrl = 'http://127.0.0.1:1087';
+const proxyAgent = new HttpsProxyAgent(proxyUrl);
 
 // 通用函数：对象转 URL 编码字符串
 function objectToUrlEncoded(obj) {
@@ -12,7 +16,7 @@ async function fetchData(baseUrl, queryParams, bodyObject, headers = { 'Content-
     const body = objectToUrlEncoded(bodyObject);
 
     try {
-        const response = await fetch(url, { method: 'POST', headers, body });
+        const response = await fetch(url, { method: 'POST', headers, body, agent: proxyAgent });
         return await response.text();
     } catch (error) {
         console.error('Error:', error);
