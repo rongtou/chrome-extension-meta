@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const HttpsProxyAgent = require('https-proxy-agent');
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 const proxyUrl = 'http://127.0.0.1:1087';
 const proxyAgent = new HttpsProxyAgent(proxyUrl);
