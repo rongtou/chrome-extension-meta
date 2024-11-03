@@ -25,6 +25,7 @@
   "author": "river laolei@forkway.cn",
   "license": "ISC",
   "dependencies": {
+    "https-proxy-agent": "^7.0.5",
     "node-fetch": "^2.6.0"
   },
   "homepage": "https://github.com/leizhenpeng/chrome-extension-meta",
